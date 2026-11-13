@@ -12,6 +12,10 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+
+from backend.database import connect_database, close_database, database_health
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
@@ -50,9 +54,9 @@ logger = logging.getLogger("cybernexus.access")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("%s starting...", APP_NAME)
-
+    await connect_database()
     yield
-
+    await close_database()
     logger.info("%s shutting down...", APP_NAME)
 
 
@@ -174,9 +178,11 @@ async def root():
 
 @app.get("/health", tags=["System"])
 async def health():
+    await database_health()
     return {
         "success": True,
         "status": "healthy",
+        "database": "connected",
         "application": APP_NAME,
         "version": APP_VERSION
     }
@@ -189,7 +195,13 @@ if __name__ == "__main__":
 
     uvicorn.run(
         "backend.server:app",
-        host=os.getenv("HOST", "127.0.0.1"),
+        host=os.getenv("HOST", "0.0.0.0"),
         port=int(os.getenv("PORT", "8000")),
         reload=ENVIRONMENT == "development"
     )
+
+
+# Serve the frontend from the same origin as the API.
+FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
+if FRONTEND_DIR.exists():
+    app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
