@@ -11,7 +11,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 
@@ -168,12 +168,8 @@ app.include_router(
 
 @app.get("/", tags=["System"])
 async def root():
-    return {
-        "success": True,
-        "application": APP_NAME,
-        "version": APP_VERSION,
-        "status": "running"
-    }
+    index_file = Path(__file__).resolve().parent.parent / "frontend" / "index.html"
+    return FileResponse(index_file)
 
 
 @app.get("/health", tags=["System"])
