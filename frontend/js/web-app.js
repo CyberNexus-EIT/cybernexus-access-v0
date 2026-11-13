@@ -158,6 +158,14 @@
                 delete payload.confirm_password;
                 delete payload.requested_role;
                 delete payload.role;
+                delete payload.terms_accepted;
+                delete payload.information_accuracy;
+                payload.full_name = [payload.first_name, payload.middle_name, payload.last_name, payload.suffix]
+                    .filter(Boolean).join(" ").trim();
+                delete payload.first_name;
+                delete payload.middle_name;
+                delete payload.last_name;
+                delete payload.suffix;
 
                 await auth.register(payload);
 
