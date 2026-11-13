@@ -230,6 +230,7 @@ input[type="checkbox"],
 input[type="radio"] {
     width: 17px;
     height: 17px;
+    margin: 0;
     accent-color: var(--color-primary);
     vertical-align: middle;
 }
@@ -276,6 +277,38 @@ input[type="file"]::file-selector-button {
 
 .form-actions {
     width: 100%;
+}
+
+/* Registration agreement checkbox alignment */
+
+.terms {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    align-items: start;
+    column-gap: var(--space-3);
+
+    width: 100%;
+    margin-bottom: var(--space-3);
+
+    line-height: var(--line-height-relaxed);
+}
+
+.terms input[type="checkbox"] {
+    display: block;
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+
+    margin: 3px 0 0;
+    padding: 0;
+
+    cursor: pointer;
+    accent-color: var(--color-primary);
+}
+
+.terms span {
+    display: block;
+    min-width: 0;
 }
 
 .terms label {
