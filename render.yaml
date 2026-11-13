@@ -20,6 +20,5 @@ services:
         sync: false
       - key: SESSION_SECRET
         generateValue: true
-        sync: false
       - key: AI_MODEL
         value: qwen2.5:3b
