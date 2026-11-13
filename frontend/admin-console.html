@@ -1,0 +1,1169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#03070b">
+
+    <meta
+        name="description"
+        content="CyberNexus Access administrator console for account management, registration approvals, access control, identity verification, and audit logging."
+    >
+
+    <title>Admin Console | CyberNexus Access</title>
+
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/spacing.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <script src="js/state.js" defer></script>
+    <script src="js/http-client.js" defer></script>
+    <script src="js/api-client.js" defer></script>
+    <script src="js/auth-client.js" defer></script>
+    <script src="js/account-client.js" defer></script>
+    <script src="js/client-components.js" defer></script>
+    <script src="js/chat.js" defer></script>
+    <script src="js/voice.js" defer></script>
+    <script src="js/web-app.js" defer></script>
+    <script src="js/admin-client.js" defer></script>
+</head>
+
+<body data-page="admin-console"
+      data-requires-auth="true"
+      data-required-role="administrator">
+
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
+
+    <!-- Application Header -->
+    <header class="app-header" id="app-header">
+
+        <div class="header-brand">
+
+            <a href="index.html" class="brand-link"
+               aria-label="CyberNexus Access home">
+
+                <span class="brand-symbol" aria-hidden="true">CN</span>
+
+                <span class="brand-text">
+                    <strong>CyberNexus</strong>
+                    <small>ACCESS</small>
+                </span>
+
+            </a>
+
+        </div>
+
+        <button
+            class="icon-button sidebar-toggle"
+            type="button"
+            data-action="toggle-sidebar"
+            aria-label="Toggle side navigation"
+            aria-expanded="true"
+            aria-controls="admin-sidebar"
+        >
+            <span aria-hidden="true">☰</span>
+        </button>
+
+        <nav class="header-navigation" aria-label="Main navigation">
+
+            <a href="account.html" class="nav-link">
+                My Account
+            </a>
+
+            <a href="admin-console.html"
+               class="nav-link"
+               aria-current="page">
+                Admin Console
+            </a>
+
+        </nav>
+
+        <div class="header-actions">
+
+            <span class="account-status" data-account-status>
+                <span class="status-indicator" aria-hidden="true"></span>
+                <span data-status-label>Loading status</span>
+            </span>
+
+            <button
+                class="button button-secondary button-small"
+                type="button"
+                data-action="logout"
+            >
+                Log out
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Administrator Application Layout -->
+    <div class="application-layout">
+
+        <!-- Side Navigation -->
+        <aside
+            class="side-panel"
+            id="admin-sidebar"
+            aria-label="Administrator navigation"
+        >
+
+            <div class="side-panel-heading">
+
+                <span class="eyebrow">CONTROL CENTER</span>
+
+                <h2>Administration</h2>
+
+                <p>
+                    Manage accounts, access, approvals, and system security.
+                </p>
+
+            </div>
+
+
+            <nav class="side-navigation">
+
+                <a href="#overview" class="side-nav-link active">
+                    <span aria-hidden="true">◈</span>
+                    Dashboard
+                </a>
+
+                <a href="#accounts" class="side-nav-link">
+                    <span aria-hidden="true">◎</span>
+                    Accounts
+                </a>
+
+                <a href="#registrations" class="side-nav-link">
+                    <span aria-hidden="true">✚</span>
+                    Registration Requests
+                </a>
+
+                <a href="#profile-requests" class="side-nav-link">
+                    <span aria-hidden="true">↻</span>
+                    Profile Update Requests
+                </a>
+
+                <a href="#identity-requests" class="side-nav-link">
+                    <span aria-hidden="true">◇</span>
+                    Identity Verification
+                </a>
+
+                <a href="#password-requests" class="side-nav-link">
+                    <span aria-hidden="true">⌑</span>
+                    Password Reset Requests
+                </a>
+
+                <a href="#roles" class="side-nav-link">
+                    <span aria-hidden="true">♙</span>
+                    Roles and Permissions
+                </a>
+
+                <a href="#audit-logs" class="side-nav-link">
+                    <span aria-hidden="true">≋</span>
+                    Audit Logs
+                </a>
+
+                <a href="#assistant" class="side-nav-link">
+                    <span aria-hidden="true">✧</span>
+                    AI Assistant
+                </a>
+
+            </nav>
+
+
+            <div class="side-panel-footer">
+
+                <span class="eyebrow">ADMINISTRATOR ACCESS</span>
+
+                <span class="version-label">Version 0.0.1</span>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+
+
+            <!-- Page Heading -->
+            <section class="page-heading">
+
+                <div>
+
+                    <span class="eyebrow">CYBERNEXUS ACCESS</span>
+
+                    <h1>Administrator Console</h1>
+
+                    <p>
+                        Manage user accounts, registration approvals,
+                        account permissions, security requests, and
+                        administrative activities.
+                    </p>
+
+                </div>
+
+                <div class="page-heading-actions">
+
+                    <button
+                        class="button button-secondary"
+                        type="button"
+                        data-action="refresh-admin"
+                    >
+                        Refresh Dashboard
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- Dashboard Overview -->
+            <section class="content-section" id="overview">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">SYSTEM OVERVIEW</span>
+
+                        <h2>Dashboard</h2>
+
+                        <p>
+                            Summary of account activity and pending
+                            administrative tasks.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <article class="panel metric-card">
+
+                        <span class="metric-label">Total Accounts</span>
+
+                        <strong class="metric-value"
+                                data-metric="total-accounts">
+                            —
+                        </strong>
+
+                        <span class="metric-description">
+                            Registered account records
+                        </span>
+
+                    </article>
+
+
+                    <article class="panel metric-card">
+
+                        <span class="metric-label">Pending Registrations</span>
+
+                        <strong class="metric-value"
+                                data-metric="pending-registrations">
+                            —
+                        </strong>
+
+                        <span class="metric-description">
+                            Awaiting administrator review
+                        </span>
+
+                    </article>
+
+
+                    <article class="panel metric-card">
+
+                        <span class="metric-label">Profile Update Requests</span>
+
+                        <strong class="metric-value"
+                                data-metric="pending-profile-updates">
+                            —
+                        </strong>
+
+                        <span class="metric-description">
+                            Awaiting review
+                        </span>
+
+                    </article>
+
+
+                    <article class="panel metric-card">
+
+                        <span class="metric-label">Identity Verifications</span>
+
+                        <strong class="metric-value"
+                                data-metric="pending-identities">
+                            —
+                        </strong>
+
+                        <span class="metric-description">
+                            Awaiting verification
+                        </span>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- Account Management -->
+            <section class="content-section" id="accounts">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">ACCOUNT DIRECTORY</span>
+
+                        <h2>Accounts and Profiles</h2>
+
+                        <p>
+                            Search and review registered accounts and
+                            their associated profile information.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="button button-secondary"
+                        type="button"
+                        data-action="export-accounts"
+                    >
+                        Export Accounts
+                    </button>
+
+                </div>
+
+
+                <article class="panel">
+
+                    <div class="table-toolbar">
+
+                        <div class="form-group">
+
+                            <label for="account-search">
+                                Search Accounts
+                            </label>
+
+                            <input
+                                type="search"
+                                id="account-search"
+                                name="search"
+                                placeholder="Search username, name, email, or account ID..."
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="account-filter-role">
+                                Filter by Role
+                            </label>
+
+                            <select id="account-filter-role"
+                                    name="role">
+
+                                <option value="">All Roles</option>
+                                <option value="user">User</option>
+                                <option value="reviewer">Reviewer</option>
+                                <option value="administrator">
+                                    Administrator
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="account-filter-status">
+                                Filter by Login Status
+                            </label>
+
+                            <select id="account-filter-status"
+                                    name="login_status">
+
+                                <option value="">All Statuses</option>
+                                <option value="enabled">Enabled</option>
+                                <option value="disabled">Disabled</option>
+                                <option value="suspended">Suspended</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Account ID</th>
+                                    <th>Name</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Registration</th>
+                                    <th>Login Access</th>
+                                    <th>Action</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="admin-account-list">
+
+                                <tr>
+
+                                    <td colspan="8" class="empty-state">
+                                        Account records will appear here
+                                        after the backend connection is
+                                        established.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <div class="table-pagination"
+                         id="account-pagination">
+
+                        <span data-pagination-info>
+                            No account records loaded
+                        </span>
+
+                        <div class="pagination-actions">
+
+                            <button
+                                class="button button-secondary button-small"
+                                type="button"
+                                data-action="accounts-previous"
+                                disabled
+                            >
+                                Previous
+                            </button>
+
+                            <button
+                                class="button button-secondary button-small"
+                                type="button"
+                                data-action="accounts-next"
+                                disabled
+                            >
+                                Next
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- Registration Approvals -->
+            <section class="content-section" id="registrations">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">REGISTRATION CONTROL</span>
+
+                        <h2>Registration Requests</h2>
+
+                        <p>
+                            Review applications and approve, reject,
+                            or assign a different role.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <article class="panel">
+
+                    <div class="table-container">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Applicant</th>
+                                    <th>Username</th>
+                                    <th>Requested Role</th>
+                                    <th>Submitted</th>
+                                    <th>Status</th>
+                                    <th>Review</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="registration-requests">
+
+                                <tr>
+
+                                    <td colspan="6" class="empty-state">
+                                        No registration requests loaded.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- Profile Update Requests -->
+            <section class="content-section" id="profile-requests">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">PROFILE GOVERNANCE</span>
+
+                        <h2>Profile Update Requests</h2>
+
+                        <p>
+                            Review proposed account information changes
+                            before applying them to the approved profile.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <article class="panel">
+
+                    <div class="table-container">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Request ID</th>
+                                    <th>Account</th>
+                                    <th>Changes Requested</th>
+                                    <th>Submitted</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="profile-update-requests">
+
+                                <tr>
+
+                                    <td colspan="6" class="empty-state">
+                                        No profile update requests loaded.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- Identity Verification -->
+            <section class="content-section" id="identity-requests">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">IDENTITY ASSURANCE</span>
+
+                        <h2>Identity Verification Requests</h2>
+
+                        <p>
+                            Review government-issued identification
+                            submissions and record verification decisions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <article class="panel">
+
+                    <div class="privacy-notice">
+
+                        <strong>Restricted information</strong>
+
+                        <p>
+                            Identity documents must only be accessible
+                            to authorized verification personnel. Never
+                            display private document URLs in public tables
+                            or expose document data to the AI assistant.
+                        </p>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Request ID</th>
+                                    <th>Account</th>
+                                    <th>ID Type</th>
+                                    <th>Submitted</th>
+                                    <th>Status</th>
+                                    <th>Review</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="identity-verification-requests">
+
+                                <tr>
+
+                                    <td colspan="6" class="empty-state">
+                                        No identity verification requests
+                                        loaded.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- Password Reset Requests -->
+            <section class="content-section" id="password-requests">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">ACCOUNT RECOVERY</span>
+
+                        <h2>Password Reset Requests</h2>
+
+                        <p>
+                            Review password recovery requests after
+                            required OTP and identity verification.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <article class="panel">
+
+                    <div class="privacy-notice">
+
+                        <strong>Security restriction</strong>
+
+                        <p>
+                            Administrators must never view or retrieve
+                            existing passwords, password hashes, or OTP
+                            values. Only authorized recovery decisions
+                            and verification states should be visible.
+                        </p>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Request ID</th>
+                                    <th>Account</th>
+                                    <th>OTP Verification</th>
+                                    <th>Identity Verification</th>
+                                    <th>Submitted</th>
+                                    <th>Action</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="password-reset-requests">
+
+                                <tr>
+
+                                    <td colspan="6" class="empty-state">
+                                        No password reset requests loaded.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- Role and Permission Management -->
+            <section class="content-section" id="roles">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">ACCESS GOVERNANCE</span>
+
+                        <h2>Roles and Permissions</h2>
+
+                        <p>
+                            Review available roles and their assigned
+                            system capabilities.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <article class="panel">
+
+                    <div class="table-container">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Role</th>
+                                    <th>Description</th>
+                                    <th>Account Management</th>
+                                    <th>Approval Authority</th>
+                                    <th>Administration</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <tr>
+
+                                    <td>
+                                        <strong>User</strong>
+                                    </td>
+
+                                    <td>
+                                        Standard account holder
+                                    </td>
+
+                                    <td>Own Account</td>
+
+                                    <td>None</td>
+
+                                    <td>None</td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>Reviewer</strong>
+                                    </td>
+
+                                    <td>
+                                        Authorized request reviewer
+                                    </td>
+
+                                    <td>Assigned Accounts</td>
+
+                                    <td>Assigned Reviews</td>
+
+                                    <td>Restricted</td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>Administrator</strong>
+                                    </td>
+
+                                    <td>
+                                        System administrator
+                                    </td>
+
+                                    <td>Authorized Accounts</td>
+
+                                    <td>Authorized Approvals</td>
+
+                                    <td>Full Administrative Access</td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <div class="form-notice">
+
+                        <strong>Role assignment protection</strong>
+
+                        <p>
+                            Role changes require an authorized administrative
+                            action and server-side permission checks. A role
+                            selector or frontend setting cannot grant access
+                            by itself.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- Audit Logs -->
+            <section class="content-section" id="audit-logs">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">SECURITY ACCOUNTABILITY</span>
+
+                        <h2>Audit Logs</h2>
+
+                        <p>
+                            Review recorded account, authentication,
+                            administrative, and approval events.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="button button-secondary button-small"
+                        type="button"
+                        data-action="export-audit-logs"
+                    >
+                        Export Logs
+                    </button>
+
+                </div>
+
+
+                <article class="panel">
+
+                    <div class="table-toolbar">
+
+                        <div class="form-group">
+
+                            <label for="audit-search">
+                                Search Audit Records
+                            </label>
+
+                            <input
+                                type="search"
+                                id="audit-search"
+                                name="audit_search"
+                                placeholder="Search event, account, or reference..."
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="audit-filter">
+                                Event Type
+                            </label>
+
+                            <select id="audit-filter" name="event_type">
+
+                                <option value="">All Events</option>
+                                <option value="authentication">
+                                    Authentication
+                                </option>
+                                <option value="account">
+                                    Account Changes
+                                </option>
+                                <option value="approval">
+                                    Approvals
+                                </option>
+                                <option value="authorization">
+                                    Access Control
+                                </option>
+                                <option value="security">
+                                    Security Events
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table class="data-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Event ID</th>
+                                    <th>Event</th>
+                                    <th>Actor</th>
+                                    <th>Target Account</th>
+                                    <th>Date and Time</th>
+                                    <th>Result</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="audit-log-list">
+
+                                <tr>
+
+                                    <td colspan="6" class="empty-state">
+                                        No audit records loaded.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- AI Assistant -->
+            <section class="content-section" id="assistant">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">CYBERNEXUS INTELLIGENCE</span>
+
+                        <h2>Administrator AI Assistant</h2>
+
+                        <p>
+                            Get assistance with administrative procedures,
+                            account reviews, and security operations.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <article class="panel ai-panel" data-ai-assistant>
+
+                    <div class="ai-header">
+
+                        <div class="ai-avatar" aria-hidden="true">
+                            AI
+                        </div>
+
+                        <div>
+
+                            <h3>CyberNexus AI</h3>
+
+                            <span class="ai-availability" data-ai-status>
+                                Assistant connection not established
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="ai-conversation"
+                        id="ai-messages"
+                        role="log"
+                        aria-live="polite"
+                        aria-relevant="additions"
+                    >
+
+                        <div class="ai-message ai-message-assistant">
+
+                            <p>
+                                Welcome to the administrator workspace.
+                                I can explain account management procedures,
+                                approval policies, and security workflows.
+                            </p>
+
+                            <p>
+                                Administrative decisions and privileged
+                                actions must always be explicitly authorized
+                                and confirmed by an administrator.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <form id="ai-chat-form" class="ai-input-form">
+
+                        <label class="visually-hidden" for="ai-message">
+                            Message CyberNexus AI
+                        </label>
+
+                        <input
+                            type="text"
+                            id="ai-message"
+                            name="message"
+                            placeholder="Ask about administrative procedures or security..."
+                            maxlength="4000"
+                            autocomplete="off"
+                            required
+                        >
+
+                        <button
+                            class="button button-primary"
+                            type="submit"
+                        >
+                            Send
+                        </button>
+
+                    </form>
+
+
+                    <div class="ai-controls">
+
+                        <button
+                            class="button button-secondary button-small"
+                            type="button"
+                            data-action="voice-input"
+                        >
+                            Voice Input
+                        </button>
+
+                        <button
+                            class="button button-secondary button-small"
+                            type="button"
+                            data-action="voice-output"
+                        >
+                            Read Aloud
+                        </button>
+
+                    </div>
+
+
+                    <p class="helper-text">
+                        AI recommendations do not constitute approvals.
+                        Do not submit passwords, OTPs, secret credentials,
+                        or unnecessary personal identity information.
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- Footer -->
+            <footer class="app-footer">
+
+                <div>
+
+                    <strong>CyberNexus PH</strong>
+
+                    <span>
+                        CyberNexus Access · Administrator Console · Version 0.0.1
+                    </span>
+
+                </div>
+
+
+                <nav aria-label="Legal information">
+
+                    <a href="../docs/privacy-policy.md">
+                        Privacy Policy
+                    </a>
+
+                    <a href="../docs/terms-of-service.md">
+                        Terms of Service
+                    </a>
+
+                </nav>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

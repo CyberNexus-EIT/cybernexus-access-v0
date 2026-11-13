@@ -1,0 +1,493 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#03070b">
+
+    <meta
+        name="description"
+        content="CyberNexus Access is the account management and access control system of CyberNexus Platform by CyberNexus PH."
+    >
+
+    <meta name="author" content="Mark C. Pangilinan">
+
+    <title>CyberNexus Access | CyberNexus PH</title>
+
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/spacing.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <script src="js/state.js" defer></script>
+    <script src="js/http-client.js" defer></script>
+    <script src="js/api-client.js" defer></script>
+    <script src="js/auth-client.js" defer></script>
+    <script src="js/client-components.js" defer></script>
+    <script src="js/chat.js" defer></script>
+    <script src="js/voice.js" defer></script>
+    <script src="js/web-app.js" defer></script>
+</head>
+
+<body data-page="home" data-guest-only="true">
+
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
+
+
+    <header class="app-header">
+
+        <div class="header-brand">
+
+            <a href="index.html" class="brand-link">
+
+                <span class="brand-symbol" aria-hidden="true">
+                    CN
+                </span>
+
+                <span class="brand-text">
+                    <strong>CyberNexus</strong>
+                    <small>ACCESS</small>
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <nav
+            class="header-navigation"
+            aria-label="Main navigation"
+        >
+
+            <a href="#features" class="nav-link">
+                Features
+            </a>
+
+            <a href="#security" class="nav-link">
+                Security
+            </a>
+
+            <a href="#about" class="nav-link">
+                About
+            </a>
+
+        </nav>
+
+
+        <div class="header-actions">
+
+            <a href="login.html" class="button button-secondary">
+                Sign In
+            </a>
+
+            <a href="register.html" class="button button-primary">
+                Create Account
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main id="main-content">
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+
+            <div class="hero-content">
+
+                <span class="eyebrow">
+                    CYBERNEXUS PLATFORM
+                </span>
+
+
+                <h1 class="hero-title">
+                    Your Account.
+                    <br>
+                    Your Access.
+                    <br>
+                    <span class="text-accent">
+                        Your Control.
+                    </span>
+                </h1>
+
+
+                <p class="hero-description">
+                    CyberNexus Access is an account management
+                    and access control system designed to provide
+                    secure authentication, account management,
+                    identity verification, and controlled access
+                    within CyberNexus Platform.
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <a
+                        href="register.html"
+                        class="button button-primary"
+                    >
+                        Get Started
+                    </a>
+
+                    <a
+                        href="login.html"
+                        class="button button-secondary"
+                    >
+                        Sign In
+                    </a>
+
+                </div>
+
+
+                <div class="hero-caption">
+
+                    <span class="status-indicator" aria-hidden="true"></span>
+
+                    <span>
+                        Account access subject to registration
+                        approval and authorization.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual" aria-hidden="true">
+
+                <div class="hero-visual-glow"></div>
+
+                <div class="access-visual-card">
+
+                    <div class="visual-card-header">
+
+                        <span class="brand-symbol">CN</span>
+
+                        <span class="visual-card-label">
+                            CYBERNEXUS ACCESS
+                        </span>
+
+                        <span class="visual-card-indicator"></span>
+
+                    </div>
+
+
+                    <div class="visual-card-content">
+
+                        <span class="visual-card-eyebrow">
+                            ACCOUNT MANAGEMENT
+                        </span>
+
+                        <div class="visual-card-title">
+                            Identity
+                            <br>
+                            <span>Control</span>
+                        </div>
+
+                        <div class="visual-card-line"></div>
+
+                        <div class="visual-card-data">
+                            <span>AUTHENTICATION</span>
+                            <span>ACCESS CONTROL</span>
+                            <span>ACCOUNT SECURITY</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="visual-card-footer">
+                        <span>CYBERNEXUS PH</span>
+                        <span>VERSION 0.0.1</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Features Section -->
+        <section
+            class="content-section landing-features"
+            id="features"
+        >
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    PLATFORM CAPABILITIES
+                </span>
+
+                <h2>
+                    Account Management
+                </h2>
+
+                <p>
+                    Essential account and access management
+                    capabilities within one platform.
+                </p>
+
+            </div>
+
+
+            <div class="features-grid">
+
+                <article class="feature-card">
+
+                    <div class="feature-icon" aria-hidden="true">
+                        ◈
+                    </div>
+
+                    <h3>
+                        Secure Authentication
+                    </h3>
+
+                    <p>
+                        Account registration, login, password
+                        recovery, and secure session management.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon" aria-hidden="true">
+                        ◎
+                    </div>
+
+                    <h3>
+                        Access Control
+                    </h3>
+
+                    <p>
+                        Server-enforced role-based permissions
+                        and administrator-controlled account access.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon" aria-hidden="true">
+                        ⌑
+                    </div>
+
+                    <h3>
+                        Identity Verification
+                    </h3>
+
+                    <p>
+                        Identity document submission and
+                        controlled administrator review.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon" aria-hidden="true">
+                        ◫
+                    </div>
+
+                    <h3>
+                        Account Management
+                    </h3>
+
+                    <p>
+                        Personal information, profile update
+                        requests, account settings, and sessions.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon" aria-hidden="true">
+                        ⌘
+                    </div>
+
+                    <h3>
+                        Administrative Console
+                    </h3>
+
+                    <p>
+                        Account reviews, registration approvals,
+                        role management, and audit log monitoring.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon" aria-hidden="true">
+                        ✧
+                    </div>
+
+                    <h3>
+                        AI Assistance
+                    </h3>
+
+                    <p>
+                        AI-powered account guidance and
+                        platform assistance through a backend
+                        integrated AI service.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- Security Section -->
+        <section
+            class="content-section security-section"
+            id="security"
+        >
+
+            <div class="security-content">
+
+                <span class="eyebrow">
+                    SECURITY BY DESIGN
+                </span>
+
+                <h2>
+                    Security and Privacy
+                </h2>
+
+                <p>
+                    CyberNexus Access is designed around
+                    secure authentication, server-side
+                    authorization, protected personal information,
+                    account approval workflows, and security
+                    audit logging.
+                </p>
+
+                <p>
+                    Sensitive information, including identity
+                    documents and authentication credentials,
+                    must be protected through appropriate
+                    access restrictions and security controls.
+                </p>
+
+                <a
+                    href="register.html"
+                    class="button button-primary"
+                >
+                    Create Your Account
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- About Section -->
+        <section
+            class="content-section about-section"
+            id="about"
+        >
+
+            <div class="about-content">
+
+                <div>
+
+                    <span class="eyebrow">
+                        ABOUT THE SYSTEM
+                    </span>
+
+                    <h2>
+                        Part of CyberNexus Platform
+                    </h2>
+
+                </div>
+
+
+                <div class="about-description">
+
+                    <p>
+                        CyberNexus Access is developed under
+                        CyberNexus PH as the account management
+                        and access control component of
+                        CyberNexus Platform.
+                    </p>
+
+                    <p>
+                        Designed and developed by
+                        <strong>Mark C. Pangilinan</strong>.
+                    </p>
+
+                    <p class="version-label">
+                        CyberNexus Access · Version 0.0.1
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="app-footer">
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <strong>CyberNexus PH</strong>
+
+                <span>
+                    CyberNexus Access · Version 0.0.1
+                </span>
+
+                <span>
+                    © <span id="current-year"></span>
+                    CyberNexus PH. All rights reserved.
+                </span>
+
+            </div>
+
+
+            <nav
+                class="footer-links"
+                aria-label="Legal information"
+            >
+
+                <a href="privacy.html">
+                    Privacy Policy
+                </a>
+
+                <a href="terms.html">
+                    Terms of Service
+                </a>
+
+                <a href="login.html">
+                    Sign In
+                </a>
+
+            </nav>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

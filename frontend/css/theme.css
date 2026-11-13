@@ -1,0 +1,274 @@
+
+/* =========================================================
+   CYBERNEXUS ACCESS
+   File: theme.css
+   Version: 0.0.1
+   Purpose: Global design tokens and visual foundations
+   ========================================================= */
+
+
+/* 1. COLOR SCHEME */
+
+:root {
+    color-scheme: dark;
+
+    /* Background */
+    --color-background: #03070b;
+    --color-background-soft: #070d13;
+
+    /* Surfaces */
+    --color-surface: #0b1219;
+    --color-surface-elevated: #111c26;
+    --color-surface-hover: #172630;
+    --color-surface-input: #070d13;
+
+    /* Brand Colors */
+    --color-primary: #35e58b;
+    --color-primary-hover: #63f5a7;
+    --color-primary-active: #20c875;
+    --color-primary-soft: rgba(53, 229, 139, 0.10);
+    --color-primary-border: rgba(53, 229, 139, 0.30);
+
+    /* Accent Colors */
+    --color-cyan: #55d9ff;
+    --color-cyan-soft: rgba(85, 217, 255, 0.10);
+
+    --color-purple: #a98bff;
+    --color-purple-soft: rgba(169, 139, 255, 0.10);
+
+    /* Text */
+    --color-text: #e8f0f5;
+    --color-text-strong: #f8fafc;
+    --color-text-muted: #8495a3;
+    --color-text-subtle: #647482;
+    --color-text-inverse: #07110b;
+
+    /* Borders */
+    --color-border: #1d303b;
+    --color-border-strong: #2b424f;
+    --color-border-focus: var(--color-primary);
+
+    /* Status */
+    --color-success: #35e58b;
+    --color-success-soft: rgba(53, 229, 139, 0.12);
+
+    --color-warning: #f5c451;
+    --color-warning-soft: rgba(245, 196, 81, 0.12);
+
+    --color-danger: #fb7185;
+    --color-danger-soft: rgba(251, 113, 133, 0.12);
+
+    --color-info: #55d9ff;
+    --color-info-soft: rgba(85, 217, 255, 0.12);
+}
+
+
+/* 2. TYPOGRAPHY TOKENS */
+
+:root {
+    --font-family-base:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    --font-family-monospace:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.125rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 1.875rem;
+    --font-size-3xl: 2.25rem;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.7;
+}
+
+
+/* 3. SPACING TOKENS */
+
+:root {
+    --space-0: 0;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+}
+
+
+/* 4. BORDER RADIUS */
+
+:root {
+    --radius-xs: 0.25rem;
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.25rem;
+    --radius-full: 9999px;
+}
+
+
+/* 5. SHADOWS AND GLOW EFFECTS */
+
+:root {
+    --shadow-sm:
+        0 2px 6px rgba(0, 0, 0, 0.20);
+
+    --shadow-md:
+        0 8px 24px rgba(0, 0, 0, 0.25);
+
+    --shadow-lg:
+        0 16px 40px rgba(0, 0, 0, 0.35);
+
+    --shadow-card:
+        0 12px 32px rgba(0, 0, 0, 0.20);
+
+    --glow-primary:
+        0 0 20px rgba(53, 229, 139, 0.12);
+
+    --glow-cyan:
+        0 0 20px rgba(85, 217, 255, 0.12);
+
+    --glow-purple:
+        0 0 20px rgba(169, 139, 255, 0.12);
+}
+
+
+/* 6. LAYOUT DIMENSIONS */
+
+:root {
+    --container-width: 1200px;
+    --container-width-wide: 1440px;
+    --container-padding: 1.5rem;
+
+    --header-height: 76px;
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 76px;
+
+    --content-max-width: 1200px;
+    --auth-card-width: 520px;
+}
+
+
+/* 7. TRANSITIONS */
+
+:root {
+    --transition-fast: 150ms ease;
+    --transition-normal: 200ms ease;
+    --transition-slow: 300ms ease;
+
+    --transition-colors:
+        color var(--transition-normal),
+        background-color var(--transition-normal),
+        border-color var(--transition-normal);
+
+    --transition-transform:
+        transform var(--transition-normal);
+
+    --transition-opacity:
+        opacity var(--transition-normal);
+}
+
+
+/* 8. Z-INDEX LAYERS */
+
+:root {
+    --z-base: 1;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-header: 300;
+    --z-sidebar: 400;
+    --z-overlay: 500;
+    --z-modal: 600;
+    --z-toast: 700;
+    --z-tooltip: 800;
+}
+
+
+/* 9. ACCESSIBILITY AND INTERACTION */
+
+:root {
+    --focus-outline-width: 2px;
+    --focus-outline-offset: 3px;
+
+    --disabled-opacity: 0.55;
+
+    --input-height: 46px;
+    --button-height: 44px;
+
+    --selection-background: rgba(53, 229, 139, 0.25);
+    --selection-color: #f8fafc;
+}
+
+
+/* 10. GLOBAL DOCUMENT FOUNDATION */
+
+html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height) + 1rem);
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background: var(--selection-background);
+    color: var(--selection-color);
+}
+
+:focus-visible {
+    outline: var(--focus-outline-width) solid var(--color-border-focus);
+    outline-offset: var(--focus-outline-offset);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* 11. REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

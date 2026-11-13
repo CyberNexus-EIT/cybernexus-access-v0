@@ -1,0 +1,451 @@
+
+/* =========================================================
+   CYBERNEXUS ACCESS
+   File: typography.css
+   Version: 0.0.1
+   Purpose: Global typography and text hierarchy
+   ========================================================= */
+
+
+/* 1. HEADINGS */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.025em;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: var(--font-weight-bold);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h3 {
+    font-size: var(--font-size-xl);
+}
+
+h4 {
+    font-size: var(--font-size-lg);
+}
+
+h5 {
+    font-size: var(--font-size-base);
+}
+
+h6 {
+    font-size: var(--font-size-sm);
+}
+
+
+/* 2. PARAGRAPHS */
+
+p {
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+}
+
+strong,
+b {
+    color: var(--color-text-strong);
+    font-weight: var(--font-weight-semibold);
+}
+
+small {
+    font-size: var(--font-size-xs);
+}
+
+
+/* 3. LINKS */
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: var(--transition-colors);
+}
+
+a:hover {
+    color: var(--color-primary-hover);
+}
+
+a:active {
+    color: var(--color-primary-active);
+}
+
+a:focus-visible {
+    border-radius: var(--radius-xs);
+}
+
+
+/* 4. BRAND AND ACCENT TEXT */
+
+.text-accent {
+    color: var(--color-primary);
+}
+
+.text-cyan {
+    color: var(--color-cyan);
+}
+
+.text-purple {
+    color: var(--color-purple);
+}
+
+.text-muted {
+    color: var(--color-text-muted);
+}
+
+.text-subtle {
+    color: var(--color-text-subtle);
+}
+
+.text-success {
+    color: var(--color-success);
+}
+
+.text-warning {
+    color: var(--color-warning);
+}
+
+.text-danger {
+    color: var(--color-danger);
+}
+
+
+/* 5. PAGE HEADINGS */
+
+.page-heading h1 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.page-heading p {
+    margin-top: var(--space-2);
+    max-width: 680px;
+}
+
+.section-heading h2,
+.section-heading h3 {
+    font-size: var(--font-size-xl);
+}
+
+.section-heading p {
+    margin-top: var(--space-2);
+}
+
+
+/* 6. EYEBROWS AND SMALL LABELS */
+
+.eyebrow {
+    color: var(--color-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.14em;
+    line-height: var(--line-height-normal);
+    text-transform: uppercase;
+}
+
+.optional-label {
+    color: var(--color-text-subtle);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+}
+
+.field-label,
+label {
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+
+/* 7. HELPER AND STATUS TEXT */
+
+.helper-text {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+}
+
+.form-notice,
+.privacy-notice {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+}
+
+.auth-security-note {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-relaxed);
+}
+
+.status-badge {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+}
+
+
+/* 8. NAVIGATION TEXT */
+
+.nav-link,
+.side-nav-link {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.header-brand,
+.brand-link {
+    color: var(--color-text-strong);
+    font-weight: var(--font-weight-bold);
+}
+
+.version-label {
+    color: var(--color-text-subtle);
+    font-family: var(--font-family-monospace);
+    font-size: var(--font-size-xs);
+}
+
+
+/* 9. AUTHENTICATION PAGES */
+
+.auth-introduction h1,
+.hero-title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: var(--font-weight-extrabold);
+    letter-spacing: -0.045em;
+    line-height: 1.1;
+}
+
+.auth-introduction p,
+.hero-description {
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+}
+
+.auth-card-heading h1,
+.auth-card-heading h2 {
+    font-size: var(--font-size-2xl);
+}
+
+.auth-card-heading p {
+    margin-top: var(--space-2);
+    font-size: var(--font-size-sm);
+}
+
+.auth-switch {
+    font-size: var(--font-size-sm);
+    text-align: center;
+}
+
+.form-inline-actions {
+    font-size: var(--font-size-sm);
+}
+
+
+/* 10. LANDING PAGE */
+
+.hero-caption {
+    color: var(--color-text-subtle);
+    font-size: var(--font-size-xs);
+}
+
+.feature-card h3 {
+    font-size: var(--font-size-lg);
+}
+
+.feature-card p {
+    font-size: var(--font-size-sm);
+}
+
+.visual-card-label,
+.visual-card-eyebrow,
+.visual-card-footer {
+    font-size: var(--font-size-xs);
+}
+
+.visual-card-title {
+    color: var(--color-text-strong);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+}
+
+
+/* 11. DASHBOARD AND ADMIN CONSOLE */
+
+.metric-label {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.metric-value {
+    color: var(--color-text-strong);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+.metric-description {
+    color: var(--color-text-subtle);
+    font-size: var(--font-size-xs);
+}
+
+.data-table {
+    font-size: var(--font-size-sm);
+}
+
+.data-table th {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.data-table td {
+    color: var(--color-text);
+    line-height: var(--line-height-normal);
+}
+
+.table-pagination {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+}
+
+
+/* 12. PROFILE AND ACCOUNT */
+
+.profile-summary-details h2 {
+    font-size: var(--font-size-lg);
+}
+
+.profile-summary-details p {
+    font-size: var(--font-size-sm);
+}
+
+.role-label {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.security-item h3 {
+    font-size: var(--font-size-base);
+}
+
+.security-item p {
+    font-size: var(--font-size-sm);
+}
+
+
+/* 13. AI ASSISTANT */
+
+.ai-header h2,
+.ai-header h3 {
+    font-size: var(--font-size-base);
+}
+
+.ai-availability {
+    font-size: var(--font-size-xs);
+}
+
+.ai-message {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+}
+
+.ai-message strong {
+    font-weight: var(--font-weight-semibold);
+}
+
+
+/* 14. EMPTY STATES */
+
+.empty-state h3 {
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+}
+
+.empty-state p {
+    font-size: var(--font-size-sm);
+}
+
+
+/* 15. FOOTER */
+
+.app-footer,
+.app-footer p {
+    font-size: var(--font-size-xs);
+}
+
+.footer-links {
+    font-size: var(--font-size-sm);
+}
+
+
+/* 16. CODE AND TECHNICAL CONTENT */
+
+code,
+pre,
+kbd,
+samp {
+    font-family: var(--font-family-monospace);
+}
+
+code {
+    color: var(--color-cyan);
+    font-size: 0.9em;
+}
+
+pre {
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-relaxed);
+}
+
+
+/* 17. LISTS */
+
+ul,
+ol {
+    color: var(--color-text-muted);
+}
+
+li {
+    line-height: var(--line-height-relaxed);
+}
+
+
+/* 18. RESPONSIVE TYPOGRAPHY */
+
+@media (max-width: 600px) {
+    .auth-introduction h1,
+    .hero-title {
+        font-size: clamp(2rem, 10vw, 2.75rem);
+    }
+
+    .auth-introduction p,
+    .hero-description {
+        font-size: var(--font-size-base);
+    }
+
+    .page-heading h1 {
+        font-size: var(--font-size-2xl);
+    }
+}

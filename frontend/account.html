@@ -1,0 +1,978 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#03070b">
+
+    <meta
+        name="description"
+        content="Manage your CyberNexus Access account, profile, identity verification, security, sessions, and account activity."
+    >
+
+    <title>My Account | CyberNexus Access</title>
+
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/spacing.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <script src="js/state.js" defer></script>
+    <script src="js/http-client.js" defer></script>
+    <script src="js/api-client.js" defer></script>
+    <script src="js/auth-client.js" defer></script>
+    <script src="js/account-client.js" defer></script>
+    <script src="js/client-components.js" defer></script>
+    <script src="js/chat.js" defer></script>
+    <script src="js/voice.js" defer></script>
+    <script src="js/web-app.js" defer></script>
+</head>
+
+<body data-page="account" data-requires-auth="true">
+
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
+
+    <!-- Application Header -->
+    <header class="app-header" id="app-header">
+
+        <div class="header-brand">
+            <a href="index.html" class="brand-link" aria-label="CyberNexus Access home">
+                <span class="brand-symbol" aria-hidden="true">CN</span>
+
+                <span class="brand-text">
+                    <strong>CyberNexus</strong>
+                    <small>ACCESS</small>
+                </span>
+            </a>
+        </div>
+
+        <button
+            class="icon-button sidebar-toggle"
+            type="button"
+            data-action="toggle-sidebar"
+            aria-label="Toggle side navigation"
+            aria-expanded="true"
+            aria-controls="account-sidebar"
+        >
+            <span aria-hidden="true">☰</span>
+        </button>
+
+        <nav class="header-navigation" aria-label="Main navigation">
+            <a href="account.html" class="nav-link" aria-current="page">
+                My Account
+            </a>
+
+            <a
+                href="admin-console.html"
+                class="nav-link"
+                data-role-access="administrator"
+                hidden
+            >
+                Admin Console
+            </a>
+        </nav>
+
+        <div class="header-actions">
+
+            <span class="account-status" data-account-status>
+                <span class="status-indicator" aria-hidden="true"></span>
+                <span data-status-label>Loading status</span>
+            </span>
+
+            <button
+                class="button button-secondary button-small"
+                type="button"
+                data-action="logout"
+            >
+                Log out
+            </button>
+
+        </div>
+    </header>
+
+
+    <!-- Main Application Layout -->
+    <div class="application-layout">
+
+        <!-- Account Side Navigation -->
+        <aside
+            class="side-panel"
+            id="account-sidebar"
+            aria-label="Account sections"
+        >
+
+            <div class="side-panel-heading">
+                <span class="eyebrow">ACCOUNT CENTER</span>
+                <h2>My Account</h2>
+                <p>Manage your identity and account security.</p>
+            </div>
+
+            <nav class="side-navigation">
+
+                <a href="#overview" class="side-nav-link active">
+                    <span aria-hidden="true">◈</span>
+                    Overview
+                </a>
+
+                <a href="#personal-information" class="side-nav-link">
+                    <span aria-hidden="true">◎</span>
+                    Personal Information
+                </a>
+
+                <a href="#identity-verification" class="side-nav-link">
+                    <span aria-hidden="true">◇</span>
+                    Identity Verification
+                </a>
+
+                <a href="#update-requests" class="side-nav-link">
+                    <span aria-hidden="true">↻</span>
+                    Update Requests
+                </a>
+
+                <a href="#security" class="side-nav-link">
+                    <span aria-hidden="true">⌑</span>
+                    Security and Password
+                </a>
+
+                <a href="#sessions" class="side-nav-link">
+                    <span aria-hidden="true">▣</span>
+                    Active Sessions
+                </a>
+
+                <a href="#activity" class="side-nav-link">
+                    <span aria-hidden="true">≋</span>
+                    Account Activity
+                </a>
+
+                <a href="#assistant" class="side-nav-link">
+                    <span aria-hidden="true">✧</span>
+                    AI Assistant
+                </a>
+
+            </nav>
+
+            <div class="side-panel-footer">
+                <span class="eyebrow">CYBERNEXUS PLATFORM</span>
+                <span class="version-label">Version 0.0.1</span>
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+
+            <!-- Page Heading -->
+            <section class="page-heading">
+
+                <div>
+                    <span class="eyebrow">ACCOUNT MANAGEMENT</span>
+
+                    <h1>My Account</h1>
+
+                    <p>
+                        View and manage your account information, identity,
+                        security settings, and account activity.
+                    </p>
+                </div>
+
+                <div class="page-heading-actions">
+                    <button
+                        class="button button-secondary"
+                        type="button"
+                        data-action="refresh-account"
+                    >
+                        Refresh
+                    </button>
+                </div>
+
+            </section>
+
+
+            <!-- Account Overview -->
+            <section class="content-section" id="overview">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">ACCOUNT SUMMARY</span>
+                        <h2>Overview</h2>
+                        <p>Your current account information and access status.</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+
+                    <article class="panel profile-summary">
+
+                        <div class="profile-avatar" data-profile-avatar>
+                            CN
+                        </div>
+
+                        <div class="profile-summary-details">
+                            <h3 data-profile-name>Loading account...</h3>
+
+                            <p data-profile-username>
+                                Username unavailable
+                            </p>
+
+                            <span class="role-label" data-account-role>
+                                Role unavailable
+                            </span>
+                        </div>
+
+                        <div class="profile-summary-footer">
+                            <span class="field-label">Account ID</span>
+                            <code data-account-id>Loading...</code>
+                        </div>
+
+                    </article>
+
+
+                    <article class="panel status-panel">
+
+                        <span class="eyebrow">LOGIN ACCESS</span>
+
+                        <h3 data-login-status>
+                            Loading access status
+                        </h3>
+
+                        <p data-login-status-description>
+                            Your current login eligibility will appear here.
+                        </p>
+
+                        <span class="status-badge" data-login-status-badge>
+                            Checking
+                        </span>
+
+                    </article>
+
+
+                    <article class="panel status-panel">
+
+                        <span class="eyebrow">REGISTRATION</span>
+
+                        <h3 data-registration-status>
+                            Loading registration
+                        </h3>
+
+                        <p>
+                            Registration approval and account activation status.
+                        </p>
+
+                        <span class="status-badge" data-registration-status-badge>
+                            Checking
+                        </span>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- Personal Information -->
+            <section class="content-section" id="personal-information">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">IDENTITY AND PROFILE</span>
+                        <h2>Personal Information</h2>
+
+                        <p>
+                            Review your current profile. Submitted changes
+                            require administrator approval before taking effect.
+                        </p>
+                    </div>
+                </div>
+
+                <article class="panel">
+
+                    <form id="profile-update-form" data-form="profile-update">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+
+                                <input
+                                    type="text"
+                                    id="first-name"
+                                    name="first_name"
+                                    placeholder="Enter your legal first name"
+                                    autocomplete="given-name"
+                                    maxlength="100"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="middle-name">Middle Name</label>
+
+                                <input
+                                    type="text"
+                                    id="middle-name"
+                                    name="middle_name"
+                                    placeholder="Enter your middle name, if applicable"
+                                    autocomplete="additional-name"
+                                    maxlength="100"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+
+                                <input
+                                    type="text"
+                                    id="last-name"
+                                    name="last_name"
+                                    placeholder="Enter your legal last name"
+                                    autocomplete="family-name"
+                                    maxlength="100"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="suffix">Suffix</label>
+
+                                <input
+                                    type="text"
+                                    id="suffix"
+                                    name="suffix"
+                                    placeholder="e.g. Jr., Sr., III (optional)"
+                                    maxlength="20"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username">Username</label>
+
+                                <input
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    placeholder="Your unique account username"
+                                    autocomplete="username"
+                                    maxlength="50"
+                                    required
+                                    readonly
+                                >
+
+                                <small>
+                                    Contact an administrator if your username
+                                    needs to be changed.
+                                </small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="display-name">Display Name</label>
+
+                                <input
+                                    type="text"
+                                    id="display-name"
+                                    name="display_name"
+                                    placeholder="Enter the name displayed on your account"
+                                    maxlength="100"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="name@example.com"
+                                    autocomplete="email"
+                                    maxlength="254"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="+63 9XX XXX XXXX"
+                                    autocomplete="tel"
+                                    maxlength="20"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="birth-date">Date of Birth</label>
+
+                                <input
+                                    type="date"
+                                    id="birth-date"
+                                    name="birth_date"
+                                    autocomplete="bday"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="country">Country</label>
+
+                                <input
+                                    type="text"
+                                    id="country"
+                                    name="country"
+                                    placeholder="e.g. Philippines"
+                                    autocomplete="country-name"
+                                    maxlength="100"
+                                >
+                            </div>
+
+                            <div class="form-group form-group-full">
+                                <label for="address">Residential Address</label>
+
+                                <textarea
+                                    id="address"
+                                    name="address"
+                                    placeholder="Enter your complete residential address"
+                                    autocomplete="street-address"
+                                    rows="3"
+                                    maxlength="500"
+                                ></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="form-notice">
+                            <strong>Approval required</strong>
+
+                            <p>
+                                Changes submitted here will be recorded as a
+                                pending profile update. Your existing approved
+                                information remains active until an administrator
+                                approves the request.
+                            </p>
+                        </div>
+
+                        <div class="form-actions">
+
+                            <button
+                                class="button button-secondary"
+                                type="reset"
+                            >
+                                Reset Form
+                            </button>
+
+                            <button
+                                class="button button-primary"
+                                type="submit"
+                            >
+                                Submit Profile Changes
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </article>
+
+            </section>
+
+
+            <!-- Government ID Verification -->
+            <section class="content-section" id="identity-verification">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">IDENTITY ASSURANCE</span>
+                        <h2>Identity Verification</h2>
+
+                        <p>
+                            Submit a valid government-issued identification
+                            document for administrator verification.
+                        </p>
+                    </div>
+                </div>
+
+                <article class="panel">
+
+                    <div class="verification-summary">
+
+                        <div>
+                            <span class="field-label">Verification Status</span>
+
+                            <h3 data-identity-status>
+                                Not yet verified
+                            </h3>
+                        </div>
+
+                        <span class="status-badge" data-identity-status-badge>
+                            Not submitted
+                        </span>
+
+                    </div>
+
+                    <form id="identity-verification-form" data-form="identity">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="id-type">Government ID Type</label>
+
+                                <select id="id-type" name="id_type" required>
+                                    <option value="">Select your ID type</option>
+                                    <option value="passport">Philippine Passport</option>
+                                    <option value="drivers_license">Driver's License</option>
+                                    <option value="national_id">Philippine National ID</option>
+                                    <option value="umid">UMID</option>
+                                    <option value="sss">SSS ID</option>
+                                    <option value="prc">PRC ID</option>
+                                    <option value="postal">Postal ID</option>
+                                    <option value="other">Other valid government ID</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id-reference">ID Reference Number</label>
+
+                                <input
+                                    type="text"
+                                    id="id-reference"
+                                    name="id_reference"
+                                    placeholder="Enter the ID number"
+                                    maxlength="100"
+                                    autocomplete="off"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group form-group-full">
+                                <label for="government-id">
+                                    Upload Government-Issued Valid ID
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="government-id"
+                                    name="government_id"
+                                    accept="image/jpeg,image/png,image/webp,application/pdf"
+                                    required
+                                >
+
+                                <small>
+                                    Submit a clear, readable image or PDF.
+                                    Only upload documents you are authorized
+                                    to provide. File size and content will
+                                    also be validated by the server.
+                                </small>
+                            </div>
+
+                        </div>
+
+                        <div class="privacy-notice">
+                            <strong>Identity document privacy</strong>
+
+                            <p>
+                                Identity documents contain sensitive personal
+                                information. They must be stored securely and
+                                accessible only to authorized verification
+                                personnel. Do not submit passwords or OTPs
+                                with your document.
+                            </p>
+                        </div>
+
+                        <div class="form-actions">
+
+                            <button
+                                class="button button-primary"
+                                type="submit"
+                            >
+                                Submit for Verification
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </article>
+
+            </section>
+
+
+            <!-- Pending Account Changes -->
+            <section class="content-section" id="update-requests">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">CHANGE MANAGEMENT</span>
+                        <h2>Update Requests</h2>
+
+                        <p>
+                            Track submitted profile and account information
+                            changes awaiting administrator review.
+                        </p>
+                    </div>
+                </div>
+
+                <article class="panel">
+
+                    <div class="table-container">
+
+                        <table class="data-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Request ID</th>
+                                    <th>Request Type</th>
+                                    <th>Date Submitted</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="account-update-requests">
+
+                                <tr>
+                                    <td colspan="5" class="empty-state">
+                                        No update requests loaded.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- Security and Password -->
+            <section class="content-section" id="security">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">ACCOUNT PROTECTION</span>
+                        <h2>Security and Password</h2>
+
+                        <p>
+                            Manage your account protection and password
+                            recovery options.
+                        </p>
+                    </div>
+                </div>
+
+                <article class="panel">
+
+                    <div class="security-item">
+
+                        <div>
+                            <h3>Password</h3>
+
+                            <p>
+                                Use the password recovery process to request
+                                a secure password change.
+                            </p>
+                        </div>
+
+                        <a
+                            href="reset-password.html"
+                            class="button button-secondary"
+                        >
+                            Reset Password
+                        </a>
+
+                    </div>
+
+                    <div class="security-item">
+
+                        <div>
+                            <h3>Login ID</h3>
+
+                            <p>
+                                Your username, verified email address, or
+                                verified phone number may be used as your
+                                login identifier.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="security-item">
+
+                        <div>
+                            <h3>Account Access</h3>
+
+                            <p>
+                                Login eligibility is controlled by the
+                                administrator and enforced by the server.
+                            </p>
+                        </div>
+
+                        <span class="status-badge" data-access-status>
+                            Loading
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- Active Sessions -->
+            <section class="content-section" id="sessions">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">SESSION MANAGEMENT</span>
+                        <h2>Active Sessions</h2>
+
+                        <p>
+                            Review authenticated sessions associated with
+                            your account.
+                        </p>
+                    </div>
+
+                    <button
+                        class="button button-danger button-small"
+                        type="button"
+                        data-action="revoke-other-sessions"
+                    >
+                        Revoke Other Sessions
+                    </button>
+
+                </div>
+
+                <article class="panel">
+
+                    <div class="table-container">
+
+                        <table class="data-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Device</th>
+                                    <th>IP Address</th>
+                                    <th>Last Activity</th>
+                                    <th>Session Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="active-sessions">
+
+                                <tr>
+                                    <td colspan="5" class="empty-state">
+                                        No session information loaded.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <p class="helper-text">
+                        Session details are provided by the authentication
+                        service. Sensitive session tokens must never be
+                        displayed here.
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- Account Activity -->
+            <section class="content-section" id="activity">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">SECURITY RECORDS</span>
+                        <h2>Account Activity</h2>
+
+                        <p>
+                            Review recent account events and security-related
+                            activities.
+                        </p>
+                    </div>
+                </div>
+
+                <article class="panel">
+
+                    <div class="table-container">
+
+                        <table class="data-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Activity</th>
+                                    <th>Date and Time</th>
+                                    <th>Source</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="account-activity">
+
+                                <tr>
+                                    <td colspan="4" class="empty-state">
+                                        No account activity loaded.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- AI Assistant -->
+            <section class="content-section" id="assistant">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">CYBERNEXUS INTELLIGENCE</span>
+                        <h2>AI Assistant</h2>
+
+                        <p>
+                            Ask for guidance about your account, settings,
+                            verification, and security.
+                        </p>
+                    </div>
+                </div>
+
+                <article class="panel ai-panel" data-ai-assistant>
+
+                    <div class="ai-header">
+
+                        <div class="ai-avatar" aria-hidden="true">
+                            AI
+                        </div>
+
+                        <div>
+                            <h3>CyberNexus AI</h3>
+                            <span class="ai-availability" data-ai-status>
+                                Assistant connection not established
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="ai-conversation"
+                        id="ai-messages"
+                        role="log"
+                        aria-live="polite"
+                        aria-relevant="additions"
+                    >
+                        <div class="ai-message ai-message-assistant">
+                            <p>
+                                Hello! I can help explain account procedures,
+                                profile updates, identity verification, and
+                                security settings.
+                            </p>
+                        </div>
+                    </div>
+
+                    <form id="ai-chat-form" class="ai-input-form">
+
+                        <label class="visually-hidden" for="ai-message">
+                            Message CyberNexus AI
+                        </label>
+
+                        <input
+                            type="text"
+                            id="ai-message"
+                            name="message"
+                            placeholder="Ask something about your account..."
+                            maxlength="4000"
+                            autocomplete="off"
+                            required
+                        >
+
+                        <button
+                            class="button button-primary"
+                            type="submit"
+                        >
+                            Send
+                        </button>
+
+                    </form>
+
+                    <div class="ai-controls">
+
+                        <button
+                            class="button button-secondary button-small"
+                            type="button"
+                            data-action="voice-input"
+                            aria-label="Start voice input"
+                        >
+                            Voice Input
+                        </button>
+
+                        <button
+                            class="button button-secondary button-small"
+                            type="button"
+                            data-action="voice-output"
+                            aria-label="Read assistant response aloud"
+                        >
+                            Read Aloud
+                        </button>
+
+                    </div>
+
+                    <p class="helper-text">
+                        AI assistance does not replace administrator approval.
+                        Never provide passwords, OTPs, or secret credentials
+                        in chat.
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- Page Footer -->
+            <footer class="app-footer">
+
+                <div>
+                    <strong>CyberNexus PH</strong>
+                    <span>CyberNexus Access · Version 0.0.1</span>
+                </div>
+
+                <nav aria-label="Legal information">
+                    <a href="../docs/privacy-policy.md">
+                        Privacy Policy
+                    </a>
+
+                    <a href="../docs/terms-of-service.md">
+                        Terms of Service
+                    </a>
+                </nav>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
