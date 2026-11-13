@@ -22,7 +22,6 @@ services:
         generateValue: true
       - key: CORS_ORIGINS
         value: ""
-      - key: AI_API_URL
         sync: false
       - key: AI_MODEL
         value: qwen2.5:3b
