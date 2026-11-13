@@ -16,6 +16,7 @@ async def connect_database():
         max_size=int(os.getenv("DB_POOL_MAX_SIZE", "5")),
         command_timeout=30,
         ssl="require",
+        statement_cache_size=0,
         server_settings={"search_path": "cybernexus_access,public"},
     )
     async with _pool.acquire() as connection:
