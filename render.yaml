@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: cybernexus-access
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: SESSION_DURATION_HOURS
+        value: "24"
+      - key: DB_POOL_MAX_SIZE
+        value: "5"
+      - key: DATABASE_URL
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: ""
+      - key: AI_API_URL
+        sync: false
+      - key: AI_MODEL
+        value: qwen2.5:3b
